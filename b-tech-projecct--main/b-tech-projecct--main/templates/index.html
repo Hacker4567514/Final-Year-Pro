@@ -1,0 +1,2555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Search</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="b-tech-projecct--main\static\styles.css">
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+:root {
+    --primary-color: #ffffff; /* White for contrast */
+    --secondary-color: #d174d2; /* Light Purple */
+    --accent-color: #e0563f; /* Coral */
+    --background-color: #121212; /* Dark Background */
+    --navbar-background: rgba(50, 50, 50, 0.8);
+    --text-color: #e0e0e0; /* Light text color */
+    --footer-background: #1c1c1c;
+    --item1-transform: translateX(-100%) translateY(-5%) scale(1.5);
+    --item1-filter: blur(30px);
+    --item1-zIndex: 11;
+    --item1-opacity: 0;
+
+    --item2-transform: translateX(0);
+    --item2-filter: blur(0px);
+    --item2-zIndex: 10;
+    --item2-opacity: 1;
+
+    --item3-transform: translate(50%,10%) scale(0.8);
+    --item3-filter: blur(10px);
+    --item3-zIndex: 9;
+    --item3-opacity: 1;
+
+    --item4-transform: translate(90%,20%) scale(0.5);
+    --item4-filter: blur(30px);
+    --item4-zIndex: 8;
+    --item4-opacity: 1;
+    
+    --item5-transform: translate(120%,30%) scale(0.3);
+    --item5-filter: blur(40px);
+    --item5-zIndex: 7;
+    --item5-opacity: 0;
+}
+
+body {
+    margin: 0;
+    background-color: var(--background-color);
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+}
+
+header {
+    background: linear-gradient(70deg, var(--accent-color), var(--secondary-color));
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+
+
+.mainheading {
+    font-size: 2.5em;
+    font-weight: 600;
+    margin-top: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    animation: fadeInDown 0.5s ease-in-out;
+    letter-spacing: 1px;
+    word-spacing: 5px;
+    text-transform: uppercase;
+    font-style: italic;
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .mainheading:hover {
+    text-shadow: 5px 0 20px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+  }
+
+
+
+
+  .ourservices {
+    font-size: 2.5em;
+    font-weight: 600;
+    margin-top: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    animation: fadeInDown 0.5s ease-in-out;
+    letter-spacing: 1px;
+    word-spacing: 5px;
+    text-transform: uppercase;
+    font-style: italic;
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .ourservices:hover {
+    text-shadow: 5px 0 20px rgba(0, 0, 0, 0.4);
+    transform: scale(1.1);
+    transition: all 0.3s ease-in-out;
+  }
+
+
+
+.search-container {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 80px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    animation: fadeIn 0.5s ease-in;
+}
+
+.list-group-item-action {
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+
+
+
+
+/* Glassmorphism navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    backdrop-filter: blur(10px) saturate(150%);
+    background-color: var(--navbar-background);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.5);
+}
+
+.navbar .nav-link {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #ff9757;
+    transform: scale(1.1);
+}
+
+.navbar .nav-item {
+    margin-right: 30px;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.navbar-brand{
+    font-family: Poppins;
+    font-weight: bold;
+    color: white;
+}
+
+.glassmorph-container {
+    padding-top: 80px; /* Adding space for fixed navbar */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar-nav {
+        background-color: var(--navbar-background);
+        backdrop-filter: blur(10px);
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .navbar-nav .nav-item {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* carousel */
+.carousel{
+    position: relative;
+    height: 800px;
+    overflow: hidden;
+    margin-top: -50px;
+}
+.carousel .list{
+    position: absolute;
+    width: 1140px;
+    max-width: 90%;
+    height: 80%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.carousel .list .item{
+    position: absolute;
+    left: 0%;
+    width: 70%;
+    height: 100%;
+    font-size: 15px;
+    transition: left 0.5s, opacity 0.5s, width 0.5s;
+}
+.carousel .list .item:nth-child(n + 6){
+    opacity: 0;
+}
+.carousel .list .item:nth-child(2){
+    z-index: 10;
+    transform: translateX(0);
+}
+.carousel .list .item img{
+    width: 50%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: right 1.5s;
+}
+
+.carousel .list .item .introduce{
+    opacity: 0;
+    pointer-events: none;
+}
+.carousel .list .item:nth-child(2) .introduce{
+    opacity: 1;
+    pointer-events: auto;
+    width: 400px;
+    position: absolute;
+    top: 50%;
+    transform:  translateY(-50%);
+    transition: opacity 0.5s;
+}
+.carousel .list .item .introduce .title{
+    font-size: 2em;
+    font-weight: 500;
+    line-height: 1em;
+}
+.carousel .list .item .introduce .topic{
+    font-size: 3em;
+    font-weight: 500;
+}
+.carousel .list .item .introduce .des{
+    font-size: 1em;
+    color: rgba(198, 133, 133, 0.6);
+}
+.carousel .list .item .introduce .seeMore{
+    font-family: Poppins;
+    margin-top: 1.2em;
+    padding: 5px 0;
+    border: none;
+    border-bottom: 2px solid #555;
+    background-color: transparent;
+    font-weight: bold;
+    letter-spacing: 3px;
+    transition: background 0.5s;
+    color: white;
+}
+.carousel .list .item .introduce .seeMore:hover{
+    
+}
+.carousel .list .item:nth-child(1){
+    transform: var(--item1-transform);
+    filter: var(--item1-filter);
+    z-index: var(--item1-zIndex);
+    opacity: var(--item1-opacity);
+    pointer-events: none;
+}
+.carousel .list .item:nth-child(3){
+    transform: var(--item3-transform);
+    filter: var(--item3-filter);
+    z-index: var(--item3-zIndex);
+}
+.carousel .list .item:nth-child(4){
+    transform: var(--item4-transform);
+    filter: var(--item4-filter);
+    z-index: var(--item4-zIndex);
+}
+.carousel .list .item:nth-child(5){
+    transform: var(--item5-transform);
+    filter: var(--item5-filter);
+    opacity: var(--item5-opacity);
+    pointer-events: none;
+}
+/* animation text in item2 */
+.carousel .list .item:nth-child(2) .introduce .title,
+.carousel .list .item:nth-child(2) .introduce .topic,
+.carousel .list .item:nth-child(2) .introduce .des,
+.carousel .list .item:nth-child(2) .introduce .seeMore{
+    opacity: 0;
+    animation: showContent 0.5s 1s ease-in-out 1 forwards;
+}
+@keyframes showContent{
+    from{
+        transform: translateY(-30px);
+        filter: blur(10px);
+    }to{
+        transform: translateY(0);
+        opacity: 1;
+        filter: blur(0px);
+    }
+}
+.carousel .list .item:nth-child(2) .introduce .topic{
+    animation-delay: 1.2s;
+}
+.carousel .list .item:nth-child(2) .introduce .des{
+    animation-delay: 1.4s;
+}
+.carousel .list .item:nth-child(2) .introduce .seeMore{
+    animation-delay: 1.6s;
+}
+/* next click */
+.carousel.next .item:nth-child(1){
+    animation: transformFromPosition2 0.5s ease-in-out 1 forwards;
+}
+@keyframes transformFromPosition2{
+    from{
+        transform: var(--item2-transform);
+        filter: var(--item2-filter);
+        opacity: var(--item2-opacity);
+    }
+}
+.carousel.next .item:nth-child(2){
+    animation: transformFromPosition3 0.7s ease-in-out 1 forwards;
+}
+@keyframes transformFromPosition3{
+    from{
+        transform: var(--item3-transform);
+        filter: var(--item3-filter);
+        opacity: var(--item3-opacity);
+    }
+}
+.carousel.next .item:nth-child(3){
+    animation: transformFromPosition4 0.9s ease-in-out 1 forwards;
+}
+@keyframes transformFromPosition4{
+    from{
+        transform: var(--item4-transform);
+        filter: var(--item4-filter);
+        opacity: var(--item4-opacity);
+    }
+}
+.carousel.next .item:nth-child(4){
+    animation: transformFromPosition5 1.1s ease-in-out 1 forwards;
+}
+@keyframes transformFromPosition5{
+    from{
+        transform: var(--item5-transform);
+        filter: var(--item5-filter);
+        opacity: var(--item5-opacity);
+    }
+}
+/* previous */
+.carousel.prev .list .item:nth-child(5){
+    animation: transformFromPosition4 0.5s ease-in-out 1 forwards;
+}
+.carousel.prev .list .item:nth-child(4){
+    animation: transformFromPosition3 0.7s ease-in-out 1 forwards;
+}
+.carousel.prev .list .item:nth-child(3){
+    animation: transformFromPosition2 0.9s ease-in-out 1 forwards;
+}
+.carousel.prev .list .item:nth-child(2){
+    animation: transformFromPosition1 1.1s ease-in-out 1 forwards;
+}
+@keyframes transformFromPosition1{
+    from{
+        transform: var(--item1-transform);
+        filter: var(--item1-filter);
+        opacity: var(--item1-opacity);        
+    }
+}
+
+/* detail  */
+.carousel .list .item .detail{
+    opacity: 0;
+    pointer-events: none;
+}
+/* showDetail */
+.carousel.showDetail .list .item:nth-child(3),
+.carousel.showDetail .list .item:nth-child(4){
+    left: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+.carousel.showDetail .list .item:nth-child(2){
+    width: 100%;
+}
+.carousel.showDetail .list .item:nth-child(2) .introduce{
+    opacity: 0;
+    pointer-events: none;
+}
+.carousel.showDetail .list .item:nth-child(2) img{
+    right: 50%;
+}
+.carousel.showDetail .list .item:nth-child(2) .detail{
+    opacity: 1;
+    width: 50%;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    text-align: right;
+    pointer-events: auto;
+}
+.carousel.showDetail .list .item:nth-child(2) .detail .title{
+    font-size: 4em;
+}
+.carousel.showDetail .list .item:nth-child(2) .detail .specifications{
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    border-top: 1px solid #5553;
+    margin-top: 20px;
+}
+.carousel.showDetail .list .item:nth-child(2) .detail .specifications div{
+    width: 105px;
+    text-align: center;
+    flex-shrink: 0;
+}
+.carousel.showDetail .list .item:nth-child(2) .detail .specifications div p:nth-child(1){
+    font-weight: bold;
+}
+.carousel.carousel.showDetail .list .item:nth-child(2) .checkout button{
+    font-family: Poppins;
+    background-color: white;
+    border: 1px solid #5555;
+    margin-left: 5px;
+    padding: 5px 10px;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+.carousel.carousel.showDetail .list .item:nth-child(2) .checkout button:nth-child(2){
+    background-color: #693EFF;
+    color: #eee;
+}
+.carousel.showDetail .list .item:nth-child(2) .detail  .title,
+.carousel.showDetail .list .item:nth-child(2) .detail  .des,
+.carousel.showDetail .list .item:nth-child(2) .detail .specifications,
+.carousel.showDetail .list .item:nth-child(2) .detail .checkout{
+    opacity: 0;
+    animation: showContent 0.5s 1s ease-in-out 1 forwards;
+}
+.carousel.showDetail .list .item:nth-child(2) .detail  .des{
+    animation-delay: 1.2s;
+}
+.carousel.showDetail .list .item:nth-child(2) .detail .specifications{
+    animation-delay: 1.4s;
+}
+.carousel.showDetail .list .item:nth-child(2) .detail .checkout{
+    animation-delay: 1.6s;
+}
+.arrows{
+    position: absolute;
+    bottom: 10px;
+    width: 1140px;
+    max-width: 90%;
+    display: flex;
+    justify-content: space-between;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#prev,
+#next{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-family: monospace;
+    border: 1px solid #5555;
+    font-size: large;
+    bottom: 20%;
+    left: 10%;
+}
+#next{
+    left: unset;
+    right: 10%;
+}
+#back{
+    position: absolute;
+    z-index: 100;
+    bottom: 0%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: none;
+    border-bottom: 1px solid #555;
+    font-family: Poppins;
+    font-weight: bold;
+    letter-spacing: 3px;
+    background-color: white;
+    padding: 10px;
+    /* opacity: 0; */
+    transition: opacity 0.5s;
+}
+.carousel.showDetail #back{
+    opacity: 1;
+}
+.carousel.showDetail #prev,
+.carousel.showDetail #next{
+    opacity: 0;
+    pointer-events: none;
+}
+.carousel::before{
+    width: 500px;
+    height: 300px;
+    content: '';
+    background-image: linear-gradient(70deg, #DC422A, blue);
+    position: absolute;
+    z-index: -1;
+    border-radius: 20% 30% 80% 10%;
+    filter: blur(150px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-10%, -50%);
+    transition: 1s;
+}
+.carousel.showDetail::before{
+    transform: translate(-100%, -50%) rotate(90deg);
+    filter: blur(130px);
+}
+@media screen and (max-width: 991px){
+    /* ipad, tablets */
+    .carousel .list .item{
+        width: 90%;
+    }
+    .carousel.showDetail .list .item:nth-child(2) .detail .specifications{
+        overflow: auto;
+    }
+    .carousel.showDetail .list .item:nth-child(2) .detail .title{
+        font-size: 2em;
+    }
+}
+@media screen and (max-width: 767px){
+    /* mobile */
+    .carousel{
+        height: 600px;
+    }
+    .carousel .list .item{
+        width: 100%;
+        font-size: 10px;
+    }
+    
+    .carousel .list{
+        height: 100%;
+    }
+    .carousel .list .item:nth-child(2) .introduce{
+        width: 50%;
+    }
+    
+    .carousel .list .item img{
+        width: 40%;
+    }
+    .carousel.showDetail .list .item:nth-child(2) .detail{
+        backdrop-filter: blur(10px);
+        font-size: small;
+    }
+    .carousel .list .item:nth-child(2) .introduce .des,
+    .carousel.showDetail .list .item:nth-child(2) .detail .des{
+        height: 100px;
+        overflow: auto;
+    }
+    .carousel.showDetail .list .item:nth-child(2) .detail .checkout{
+        display: flex;
+        width: max-content;
+        float: right;
+    }
+}
+
+/*Footer*/
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+body{
+	line-height: 1.5;
+	font-family: 'Poppins', sans-serif;
+}
+*{
+	margin:0;
+	padding:0;
+	box-sizing: border-box;
+}
+.fcontainer{
+	max-width: 1170px;
+	margin:auto;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+}
+ul{
+	list-style: none;
+}
+.footer{
+	background-color: #282a2f;
+    padding: 70px 0;
+}
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
+}
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+    margin-left:30px;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: #ff9757;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li a{
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color: #bbbbbb;
+	display: block;
+	transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+	color: #ff9757;
+	padding-left: 8px;
+}
+.footer-col .social-links a{
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	background-color: rgba(255,255,255,0.2);
+	margin:0 10px 10px 0;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%;
+	color: #ffffff;
+	transition: all 0.5s ease;
+}
+.footer-col .social-links a:hover{
+	color: #24262b;
+	background-color: #ff9757;
+}
+
+/*responsive*/
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
+}
+
+
+.dropdown-menu {
+    display: none; 
+  }
+  
+  .dropdown:hover .dropdown-menu,
+  .dropdown:focus-within .dropdown-menu {
+    display: block; 
+    animation: fadeInDown 0.3s; 
+  }
+  
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(0);
+    }
+  }
+
+  body {
+    background-color: #f4f4f9;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #3b5998;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 80px;
+}
+
+.form-label {
+    color: #555;
+    font-weight: 600;
+}
+
+.form-select {
+    background-color: #f9f9f9;
+    border-color: #ccc;
+    color: #333;
+    font-size: 1rem;
+}
+
+.form-select:focus {
+    border-color: #3b5998;
+    box-shadow: 0 0 5px rgba(59, 89, 152, 0.5);
+}
+
+.btn-primary {
+    background-color: #3b5998;
+    border-color: #3b5998;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+.btn-primary:hover {
+    background-color: #2d4373;
+}
+
+h2 {
+    color: #3b5998;
+    font-weight: bold;
+    margin-top: 30px;
+    text-align: center;
+}
+
+
+h1, h2 {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #4a4a8a;
+    margin-bottom: 20px;
+}
+.form-label {
+    font-weight: 600;
+    color: #fff;
+}
+.btn-primary {
+    background-color: #6f42c1;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+    background-color: #5b379c;
+}
+
+/* Styles for the result cards */
+#results {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    border: none;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #333;
+}
+.card p {
+    font-size: 0.9rem;
+    color: #555;
+}
+.shadow {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation for smooth appearance */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 0.6s forwards;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+</style>
+<body id="Home">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">AI Business</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#Home">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#Services">Services</a>
+              </li>
+              <!-- Dropdown menu for Offerings -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="offeringsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"> Offerings </a>
+                <ul class="dropdown-menu dropdown-menu-end animate__animated animate__fadeInDown" aria-labelledby="offeringsDropdown">
+                  <li><a class="dropdown-item" href="#expertConsultation">Expert Consultations</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#aboutUs">About Us</a>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#contactUs">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+      <h1>Business Search Portal</h1>
+    <form id="search-form" onsubmit="event.preventDefault(); searchBusinesses();">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="location-dropdown" class="form-label">Location</label>
+                <select id="location-dropdown" class="form-select" name="location" required>
+                    <option value="">Select Location</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="sector-dropdown" class="form-label">Sector</label>
+                <select id="sector-dropdown" class="form-select" name="sector" required>
+                    <option value="">Select Sector</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label for="stage-dropdown" class="form-label">Business Stage</label>
+                <select id="stage-dropdown" class="form-select" name="stage" required>
+                    <option value="">Select Business Stage</option>
+                </select>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label for="category-dropdown" class="form-label">Category</label>
+                <select id="category-dropdown" class="form-select" name="category" required>
+                    <option value="">Select Category</option>
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Search</button>
+    </form>
+
+    <h2 class="my-4">Results</h2>
+    <div id="results" class="row"></div>
+
+    <div class="carousel">
+        <div class="ourservices">Popular Services</div>
+        <div class="list">
+            <div class="item">
+                <img src="static\images\Advertising&Promo.png">
+                <div class="introduce">
+                    <div class="title">
+                    </div>
+                    <div class="topic">Advertising and Promotion</div>
+                    <div class="des">
+                        <!-- 20 lorem -->
+                        Developing and executing advertising campaigns across various mediums, including print, TV, radio, outdoor and digital platforms involving media planning, budgeting, creative development & performance tracking.
+                    </div>
+                    <button class="seeMore">SEE MORE &#8599</button>
+                </div>
+                <div class="detail">
+                    <div class="title">SHOP ACT INTIMATION</div>
+                    <div class="des">
+                        <!-- lorem 50 -->
+                        Shop Act Intimation is a mandatory Labor Law compliance for all businesses located within municipal limits of Maharashtra. It is a legal compliance requirement for businesses in Maharashtra.
+                    </div>
+                    <div class="specifications">
+                        <div>
+                            <p>Profile Settings</p>
+                            <p>No Details</p>
+                        </div>
+                        <div>
+                            <p>Service Availed </p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Documents Uploaded</p>
+                            <p>0</p>
+                        </div>
+                        
+                        <div>
+                            <p>Appointments</p>
+                            <p>No Appointments Schedule</p>
+                        </div>
+                    </div>
+                    <div class="checkout">
+                        <button>₹ 1000</button>
+                        <button>CHECKOUT</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="static\images/ContentCreation.png">
+                <div class="introduce">
+                    <div class="title"></div>
+                    <div class="topic">Content Creation
+                    </div>
+                    <div class="des">
+                        <!-- 20 lorem -->
+                        Generating high-quality content such as blog posts, articles, videos, infographics & social media posts that engage & resonate with the target audience with storytelling, copywriting and content optimization.
+                    </div>
+                    <button class="seeMore">SEE MORE &#8599</button>
+                </div>
+                <div class="detail">
+                    <div class="title">SHOP ACT INTIMATION</div>
+                    <div class="des">
+                        <!-- lorem 50 -->
+                        Shop Act Intimation is a mandatory Labor Law compliance for all businesses located within municipal limits of Maharashtra. It is a legal compliance requirement for businesses in Maharashtra.
+                    </div>
+                    <div class="specifications">
+                        <div>
+                            <p>Profile Settings</p>
+                            <p>No Details</p>
+                        </div>
+                        <div>
+                            <p>Service Availed </p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Documents Uploaded</p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Appointments</p>
+                            <p>No Appointments Schedule</p>
+                        </div>
+                    </div>
+                    <div class="checkout">
+                        <button>₹ 1000</button>
+                        <button>CHECKOUT</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="static\images/PublicRelation.png">
+                <div class="introduce">
+                    <div class="title"></div>
+                    <div class="topic">Public Relations
+                    </div>
+                    <div class="des">
+                        <!-- 20 lorem -->
+                        Managing public relations efforts by cultivating relationships with media outlets, writing press releases, organizing events & handling crisis communication. Building & maintaining a positive brand image with the reputation of the business.
+                    </div>
+                    <button class="seeMore">SEE MORE &#8599</button>
+                </div>
+                <div class="detail">
+                    <div class="title">SHOP ACT INTIMATION</div>
+                    <div class="des">
+                        <!-- lorem 50 -->
+                        Shop Act Intimation is a mandatory Labor Law compliance for all businesses located within municipal limits of Maharashtra. It is a legal compliance requirement for businesses in Maharashtra.
+                    </div>
+                    <div class="specifications">
+                        <div>
+                            <p>Profile Settings</p>
+                            <p>No Details</p>
+                        </div>
+                        <div>
+                            <p>Service Availed </p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Documents Uploaded</p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Appointments</p>
+                            <p>No Appointments Schedule</p>
+                        </div>
+                    </div>
+                    <div class="checkout">
+                        <button>₹ 1000</button>
+                        <button>CHECKOUT</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="static\images/MarketResearch.png">
+                <div class="introduce">
+                    <div class="title"></div>
+                    <div class="topic">Market Research
+                    </div>
+                    <div class="des">
+                        <!-- 20 lorem -->
+                        Conducting market research to understand customer preferences, industry trends & competitive landscape. Gathering data through surveys, interviews, focus groups to inform marketing strategies & decision-making
+                    </div>
+                    <button class="seeMore">SEE MORE &#8599</button>
+                </div>
+                <div class="detail">
+                    <div class="title">SHOP ACT INTIMATION</div>
+                    <div class="des">
+                        <!-- lorem 50 -->
+                        Shop Act Intimation is a mandatory Labor Law compliance for all businesses located within municipal limits of Maharashtra. It is a legal compliance requirement for businesses in Maharashtra.
+                    </div>
+                    <div class="specifications">
+                        <div>
+                            <p>Profile Settings</p>
+                            <p>No Details</p>
+                        </div>
+                        <div>
+                            <p>Service Availed </p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Documents Uploaded</p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Appointments</p>
+                            <p>No Appointments Schedule</p>
+                        </div>
+                    </div>
+                    <div class="checkout">
+                        <button>₹ 1000</button>
+                        <button>CHECKOUT</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="static\images/Branding.png">
+                <div class="introduce">
+                    <div class="title"></div>
+                    <div class="topic">Branding
+                    </div>
+                    <div class="des">
+                        <!-- 20 lorem -->
+                        Creating & enhancing brand identity by developing brand guidelines, logos, taglines and other visual, verbal elements. Ensuring consistent brand messaging across all marketing channels.
+                    </div>
+                    <button class="seeMore">SEE MORE &#8599</button>
+                </div>
+                <div class="detail">
+                    <div class="title">SHOP ACT INTIMATION</div>
+                    <div class="des">
+                        <!-- lorem 50 -->
+                        Shop Act Intimation is a mandatory Labor Law compliance for all businesses located within municipal limits of Maharashtra. It is a legal compliance requirement for businesses in Maharashtra.
+                    </div>
+                    <div class="specifications">
+                        <div>
+                            <p>Profile Settings</p>
+                            <p>No Details</p>
+                        </div>
+                        <div>
+                            <p>Service Availed </p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Documents Uploaded</p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Appointments</p>
+                            <p>No Appointments Schedule</p>
+                        </div>
+                    </div>
+                    <div class="checkout">
+                        <button>₹ 1000</button>
+                        <button>CHECKOUT</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="item">
+                <img src="static\images/DigitalMarketing.png">
+                <div class="introduce">
+                    <div class="title"></div>
+                    <div class="topic">Digital Marketing
+                    </div>
+                    <div class="des">
+                        <!-- 20 lorem -->
+                        Implementing online marketing campaigns such as search engine optimization (SEO), pay-per-click (PPC) advertising, email marketing, content marketing & influencer marketing
+                    </div>
+                    <button class="seeMore">SEE MORE &#8599</button>
+                </div>
+                <div class="detail">
+                    <div class="title">SHOP ACT INTIMATION</div>
+                    <div class="des">
+                        <!-- lorem 50 -->
+                        Shop Act Intimation is a mandatory Labor Law compliance for all businesses located within municipal limits of Maharashtra. It is a legal compliance requirement for businesses in Maharashtra.
+                    </div>
+                    <div class="specifications">
+                        <div>
+                            <p>Profile Settings</p>
+                            <p>No Details</p>
+                        </div>
+                        <div>
+                            <p>Service Availed </p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Documents Uploaded</p>
+                            <p>0</p>
+                        </div>
+                        <div>
+                            <p>Appointments</p>
+                            <p>No Appointments Schedule</p>
+                        </div>
+                    </div>
+                    <div class="checkout">
+                        <button>₹ 1000</button>
+                        <button>CHECKOUT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="arrows">
+            <button id="prev"><</button>
+            <button id="next">></button>
+            <button id="back">See All  &#8599</button>
+        </div>
+    </div>
+
+    
+
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1e1e2f;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px) saturate(150%);
+            background-color: var(--navbar-background);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.5);
+        }
+        
+        .navbar .nav-link {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .navbar .nav-link:hover {
+            color: #ff9757;
+            transform: scale(1.1);
+        }
+        
+        .navbar .nav-item {
+            margin-right: 30px;
+        }
+        
+        .navbar-toggler {
+            border: none;
+        }
+        
+        .navbar-toggler-icon {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        
+        .navbar-brand{
+            font-family: Poppins;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .glassmorph-container {
+            padding-top: 80px; /* Adding space for fixed navbar */
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar-nav {
+                background-color: var(--navbar-background);
+                backdrop-filter: blur(10px);
+                width: 100%;
+                padding: 10px;
+                text-align: center;
+            }
+        
+            .navbar-nav .nav-item {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 120px 20px;
+            background: linear-gradient(135deg, #6a82fb, #fc5c7d);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: slideInDown 1s ease-in-out;
+        }
+
+        p {
+            font-size: 1.2rem;
+            animation: slideInUp 1s ease-in-out;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 70px 20px;
+            text-align: center;
+            background-color: #2e2e43;
+            animation: fadeIn 2s ease-in;
+            
+        }
+
+        .services h2 {
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        .service-cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .service-card {
+            background: #393958;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px;
+            transition: transform 0.4s, box-shadow 0.4s;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            animation: fadeInUp 1s ease-in-out forwards;
+        }
+
+        .service-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .service-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .service-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .service-card:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        .service-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .service-card img {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            border: 4px solid #6a82fb;
+        }
+
+        .service-card h3 {
+            margin-top: 15px;
+            font-size: 1.5rem;
+            color: #ffffff;
+        }
+
+        .service-card p {
+            font-size: 1rem;
+            color: #cccccc;
+            margin-bottom: 15px;
+        }
+
+        .service-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #fc5c7d;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: background-color 0.4s;
+        }
+
+        .service-card a:hover {
+            background-color: #6a82fb;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose-us {
+            background-color: #1e1e2f;
+            padding: 60px 20px;
+            text-align: center;
+            animation: fadeIn 2.5s ease;
+        }
+
+        .why-choose-us h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+
+        .why-choose-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .choose-item {
+            background-color: #393958;
+            padding: 25px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 1s ease-in-out forwards;
+        }
+
+        .choose-item h4 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .choose-item p {
+            color: #cccccc;
+            font-size: 1rem;
+        }
+
+        /* Footer Styles */
+        body{
+            line-height: 1.5;
+            font-family: 'Poppins', sans-serif;
+        }
+        .fcontainer{
+            max-width: 1170px;
+            margin:auto;
+        }
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        ul{
+            list-style: none;
+        }
+        .footer{
+            background-color: #282a2f;
+            padding: 70px 0;
+        }
+        .footer-col{
+           width: 25%;
+           padding: 0 15px;
+        }
+        .footer-col h4{
+            font-size: 18px;
+            color: #ffffff;
+            text-transform: capitalize;
+            margin-bottom: 35px;
+            font-weight: 500;
+            position: relative;
+            margin-left:30px;
+        }
+        .footer-col h4::before{
+            content: '';
+            position: absolute;
+            left:0;
+            bottom: -10px;
+            background-color: #ff9757;
+            height: 2px;
+            box-sizing: border-box;
+            width: 50px;
+        }
+        .footer-col ul li:not(:last-child){
+            margin-bottom: 10px;
+        }
+        .footer-col ul li a{
+            font-size: 16px;
+            text-transform: capitalize;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 300;
+            color: #bbbbbb;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        .footer-col ul li a:hover{
+            color: #ff9757;
+            padding-left: 8px;
+        }
+        .footer-col .social-links a{
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            background-color: rgba(255,255,255,0.2);
+            margin:0 10px 10px 0;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            color: #ffffff;
+            transition: all 0.5s ease;
+        }
+        .footer-col .social-links a:hover{
+            color: #24262b;
+            background-color: #ff9757;
+        }
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInDown {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+
+
+
+
+    <div id="Services" class="hero-section">
+        <h1>Our AI-Powered Services</h1>
+        <p>Empowering businesses with innovative AI solutions for growth and efficiency.</p>
+    </div>
+
+    <!-- Services Section -->
+    <div class="services">
+        <h2>What We Offer</h2>
+        <div class="d-flex justify-content-center flex-wrap">
+            <div class="service-card">
+                <img src="static/images/AI Consulting.png" alt="Service 1">
+                <h3>AI Consulting</h3>
+                <p>Expert guidance to integrate AI solutions into your business strategy.</p>
+            </div>
+            <div class="service-card">
+                <img src="static/images/Data Analysis.png" alt="Service 2">
+    
+                <h3>Data Analysis</h3>
+                <p>Transforming raw data into actionable insights to drive decisions.</p>
+            </div>
+            <div class="service-card">
+                <img src="static/images/Custom Software Development.png" alt="Service 3">
+                <h3>Custom Software Development</h3>
+                <p>Building tailored software solutions to meet your unique business challenges.</p>
+            </div>
+            <div class="service-card">
+                <img src="static/images/Digital Marketing (2).png" alt="Service 4">
+                <h3>Digital Marketing</h3>
+                <p>Leveraging AI to optimize your digital marketing strategies for maximum reach.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why Choose Us Section -->
+    <div class="why-choose-us">
+        <h2>Why Choose Our Services</h2>
+        <div class="why-choose-list">
+            <div class="choose-item">
+                <h4>Experienced AI Experts</h4>
+                <p>Our team consists of industry experts with years of experience in AI technology and its implementation across various industries.</p>
+            </div>
+            <div class="choose-item">
+                <h4>Customized Solutions</h4>
+                <p>We understand that every business is unique, and we create personalized AI solutions that cater to your specific needs.</p>
+            </div>
+            <div class="choose-item">
+                <h4>Proven Results</h4>
+                <p>We have a proven track record of helping businesses achieve significant growth and efficiency through AI-powered services.</p>
+            </div>
+            <div class="choose-item">
+                <h4>24/7 Support</h4>
+                <p>Our dedicated support team is available around the clock to ensure smooth operations and provide assistance whenever needed.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1e1e2f;
+            color: white;
+            overflow-x: hidden;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px) saturate(150%);
+            background-color: var(--navbar-background);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.5);
+        }
+        
+        .navbar .nav-link {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        
+        .navbar .nav-link:hover {
+            color: #ff9757;
+            transform: scale(1.1);
+        }
+        
+        .navbar .nav-item {
+            margin-right: 30px;
+        }
+        
+        .navbar-toggler {
+            border: none;
+        }
+        
+        .navbar-toggler-icon {
+            background-color: #fff;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        
+        .navbar-brand{
+            font-family: Poppins;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .glassmorph-container {
+            padding-top: 80px; /* Adding space for fixed navbar */
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar-nav {
+                background-color: var(--navbar-background);
+                backdrop-filter: blur(10px);
+                width: 100%;
+                padding: 10px;
+                text-align: center;
+            }
+        
+            .navbar-nav .nav-item {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+        
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Hero Section */
+        .hero-section {
+            text-align: center;
+            padding: 120px 20px;
+            background: linear-gradient(135deg, #6a82fb, #fc5c7d);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            animation: slideInDown 1s ease-in-out;
+        }
+
+        p {
+            font-size: 1.2rem;
+            animation: slideInUp 1s ease-in-out;
+        }
+
+        /* Consultation Section */
+        .consultation {
+            padding: 70px 20px;
+            text-align: center;
+            background-color: #2e2e43;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .consultation h2 {
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        .consultation-cards {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .consultation-card {
+            background: #393958;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 15px;
+            transition: transform 0.4s, box-shadow 0.4s;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            animation: fadeInUp 1s ease-in-out forwards;
+        }
+
+        .consultation-card:nth-child(1) {
+            animation-delay: 0.2s;
+        }
+
+        .consultation-card:nth-child(2) {
+            animation-delay: 0.4s;
+        }
+
+        .consultation-card:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .consultation-card:nth-child(4) {
+            animation-delay: 0.8s;
+        }
+
+        .consultation-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .consultation-card img {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 20px;
+            border-radius: 50%;
+            border: 4px solid #6a82fb;
+        }
+
+        .consultation-card h3 {
+            margin-top: 15px;
+            font-size: 1.5rem;
+            color: #ffffff;
+        }
+
+        .consultation-card p {
+            font-size: 1rem;
+            color: #cccccc;
+            margin-bottom: 15px;
+        }
+
+        .consultation-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #fc5c7d;
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: background-color 0.4s;
+        }
+
+        .consultation-card a:hover {
+            background-color: #6a82fb;
+        }
+
+        /* Key Features Section */
+        .key-features {
+            background-color: #1e1e2f;
+            padding: 60px 20px;
+            text-align: center;
+            animation: fadeIn 2.5s ease;
+        }
+
+        .key-features h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 40px;
+        }
+
+        .feature-list {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .feature-item {
+            background-color: #393958;
+            padding: 25px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            animation: zoomIn 1s ease-in-out forwards;
+        }
+
+        .feature-item h4 {
+            color: #fff;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .feature-item p {
+            color: #cccccc;
+            font-size: 1rem;
+        }
+
+        /* Footer Styles */
+        body{
+            line-height: 1.5;
+            font-family: 'Poppins', sans-serif;
+        }
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        .fcontainer{
+            max-width: 1170px;
+            margin:auto;
+        }
+        .row{
+            display: flex;
+            flex-wrap: wrap;
+        }
+        ul{
+            list-style: none;
+        }
+        .footer{
+            background-color: #282a2f;
+            padding: 70px 0;
+        }
+        .footer-col{
+           width: 25%;
+           padding: 0 15px;
+        }
+        .footer-col h4{
+            font-size: 18px;
+            color: #ffffff;
+            text-transform: capitalize;
+            margin-bottom: 35px;
+            font-weight: 500;
+            position: relative;
+            margin-left:30px;
+        }
+        .footer-col h4::before{
+            content: '';
+            position: absolute;
+            left:0;
+            bottom: -10px;
+            background-color: #ff9757;
+            height: 2px;
+            box-sizing: border-box;
+            width: 50px;
+        }
+        .footer-col ul li:not(:last-child){
+            margin-bottom: 10px;
+        }
+        .footer-col ul li a{
+            font-size: 16px;
+            text-transform: capitalize;
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 300;
+            color: #bbbbbb;
+            display: block;
+            transition: all 0.3s ease;
+        }
+        .footer-col ul li a:hover{
+            color: #ff9757;
+            padding-left: 8px;
+        }
+        .footer-col .social-links a{
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            background-color: rgba(255,255,255,0.2);
+            margin:0 10px 10px 0;
+            text-align: center;
+            line-height: 40px;
+            border-radius: 50%;
+            color: #ffffff;
+            transition: all 0.5s ease;
+        }
+        .footer-col .social-links a:hover{
+            color: #24262b;
+            background-color: #ff9757;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInDown {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+
+
+
+     
+    <div id="expertConsultation" class="hero-section">
+        <div class="hero-overlay"></div>
+        <video autoplay muted loop class="hero-video">
+            <source src="static\video\Expert Consultation for Business.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <div class="hero-content">
+            <h1>Expert Consultation for Business</h1>
+            <p>Get expert guidance on integrating AI solutions tailored to your business needs.</p>
+        </div>
+    </div>
+  
+
+
+    <!-- Consultation Services Section -->
+    <div class="consultation">
+        <h2>Our Consultation Services</h2>
+        <div class="consultation-cards">
+            <div class="consultation-card">
+                <img src="static/images/Strategic AI Integration.png" alt="Consultation Service 1">
+                <h3>Strategic AI Integration</h3>
+                <p>Unlock AI’s potential to boost efficiency and drive innovation in your business strategy.</p>
+                <a href="#">Learn More</a>
+            </div>
+            <div class="consultation-card">
+                <img src="static/images/Data-Driven Decision Making.png" alt="Consultation Service 2">
+                <h3>Data-Driven Decision Making</h3>
+                <p>Utilize cutting-edge analytics and data insights to improve business outcomes.</p>
+                <a href="#">Learn More</a>
+            </div>
+            <div class="consultation-card">
+                <img src="static/images/Custom AI Solutions.jpg" alt="Consultation Service 3">
+                <h3>Custom AI Solutions</h3>
+                <p>Tailored AI systems for automation, machine learning, and more.</p>
+                <a href="#">Learn More</a>
+            </div>
+            <div class="consultation-card">
+                <img src="static/images/Ongoing Support & Monitoring.png" alt="Consultation Service 4">
+                <h3>Ongoing Support & Monitoring</h3>
+                <p>Continuous support to ensure smooth AI operations as your business grows.</p>
+                <a href="#">Learn More</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Key Features Section -->
+    <div class="key-features">
+        <h2>Key Features of Our Consultation</h2>
+        <div class="feature-list">
+            <div class="feature-item">
+                <h4>Expert-Led Consultations</h4>
+                <p>Work directly with AI experts who understand the nuances of your industry.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Customized AI Strategies</h4>
+                <p>Our team develops personalized AI strategies that align with your business goals.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Scalable AI Solutions</h4>
+                <p>AI solutions designed to grow with your business, ensuring long-term success.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+     <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1e1e2f;
+            color: white;
+        }
+
+       /* Hero Section with Video */
+       .hero-section {
+        position: relative;
+        height: 60vh;
+        overflow: hidden;
+    }
+    .hero-video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+
+    }
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        text-align: center;
+        padding: 0 20px;
+
+    }
+  
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: slideIn 1s ease;
+        }
+
+        .content {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .team {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .team-member {
+            background: #2e2e43;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            animation: bounceIn 1s;
+            width: 250px; /* Fixed width for uniformity */
+        }
+
+        .team-member img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 15px;
+            animation: zoomIn 1s;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #2e2e43;
+            padding: 40px 0;
+            color: white;
+        }
+
+        .footer-col {
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        .footer h4 {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes bounceIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+    </style>
+
+
+    <div id="aboutUs" class="hero-section">
+        <div class="hero-overlay"></div>
+        <video autoplay muted loop class="hero-video">
+            <source src="static\video\consulting-video.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+        <div class="hero-content">
+            <h1>Shaping Tomorrow's Business with Innovative AI Solutions</h1>
+            <p>At the intersection of technology and strategy, we help businesses unlock their full potential, driving growth through intelligent solutions.</p>
+        </div>
+    </div>
+
+    <div class="content">
+        <h2>Who We Are</h2>
+        <p>We are a team of passionate professionals dedicated to leveraging AI technologies to empower businesses. Our mission is to provide innovative solutions that enhance efficiency and drive growth.</p>
+
+        <h2>Meet Our Team</h2>
+        <div class="team">
+            <div class="team-member">
+                <img src="images/team-member1.jpg" alt="Team Member 1">
+                <h3>John Doe</h3>
+                <p>CEO & Founder</p>
+                <p>Expert in AI strategy and implementation.</p>
+            </div>
+            <div class="team-member">
+                <img src="images/team-member2.jpg" alt="Team Member 2">
+                <h3>Jane Smith</h3>
+                <p>Chief Technology Officer</p>
+                <p>Specializes in machine learning and data analysis.</p>
+            </div>
+            <div class="team-member">
+                <img src="images/team-member3.jpg" alt="Team Member 3">
+                <h3>Emily Johnson</h3>
+                <p>Marketing Director</p>
+                <p>Focuses on branding and digital marketing strategies.</p>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <style>
+        /* Contact Us Styling */
+        .contact-heading {
+            margin-top: 1.5em;
+            font-size: 2.5rem;
+            font-family: 'Poppins', sans-serif;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .contact-subheading {
+            font-size: 1.2rem;
+            color: #7a7a7a;
+            font-family: 'Poppins', sans-serif;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .contact-form {
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #6c63ff;
+            box-shadow: 0 0 5px rgba(108, 99, 255, 0.5);
+        }
+
+        .btn-primary {
+            background-color: #6c63ff;
+            border: none;
+            font-size: 1.2rem;
+            font-weight: bold;
+            padding: 8px;
+            transition: background-color 0.3s ease;
+            width: 10px;
+        }
+
+        .btn-primary:hover {
+            background-color: #5848d9;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #282a2f;
+            padding: 70px 0;
+        }
+
+        .footer-col {
+            width: 25%;
+            padding: 0 15px;
+        }
+
+        .footer-col h4 {
+            font-size: 18px;
+            color: #ffffff;
+            text-transform: capitalize;
+            margin-bottom: 35px;
+            font-weight: 500;
+            position: relative;
+            margin-left: 30px;
+        }
+
+        .footer-col h4::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            background-color: #ff9757;
+            height: 2px;
+            box-sizing: border-box;
+            width: 50px;
+        }
+
+        .footer-col ul li a {
+            font-size: 16px;
+            text-transform: capitalize;
+            color: #bbbbbb;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #ff9757;
+            padding-left: 8px;
+        }
+
+        /* Responsive */
+        @media(max-width: 767px) {
+            .footer-col {
+                width: 50%;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media(max-width: 574px) {
+            .footer-col {
+                width: 100%;
+            }
+        }
+    </style>
+
+
+
+    <section class="contact-section py-5">
+        <div id="contactUs" class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h1 class="contact-heading">Get In Touch With Us</h1>
+                    <p class="contact-subheading">We’d love to hear from you! Drop us a message and let’s discuss how we can help your business grow.</p>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-4">
+                <div class="col-md-8">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Write your message here" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-4 w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+
+
+
+
+
+
+
+
+    <footer class="footer">
+        <div class="fcontainer">
+          <div class="row">
+            <div class="footer-col">
+              <h4>company</h4>
+              <ul>
+                <li><a href="#">about us</a></li>
+                <li><a href="#">our services</a></li>
+                <li><a href="#">privacy policy</a></li>
+                <li><a href="#">affiliate program</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Resources</h4>
+              <ul>
+                <li><a href="#">FAQs</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Developer APIs</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Legal</h4>
+              <ul>
+                <li><a href="#">Privacy</a></li>
+                <li><a href="#">Terms of Services</a></li>
+                <li><a href="#">shoes</a></li>
+                <li><a href="#">Security</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Stay Connected</h4>
+              <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+      
+
+
+      <script>
+        // Fetch options from server and populate dropdowns
+        document.addEventListener("DOMContentLoaded", function() {
+            fetch('/options')
+                .then(response => response.json())
+                .then(data => {
+                    populateDropdown('location-dropdown', data.locations);
+                    populateDropdown('sector-dropdown', data.sectors);
+                    populateDropdown('stage-dropdown', data.stages);
+                    populateDropdown('category-dropdown', data.categories);
+                })
+                .catch(error => console.error('Error fetching options:', error));
+
+            function populateDropdown(elementId, options) {
+                const dropdown = document.getElementById(elementId);
+                dropdown.innerHTML = '<option value="">Select</option>'; // Clear existing options and add default
+                options.forEach(option => {
+                    const optionElement = document.createElement('option');
+                    optionElement.value = option;
+                    optionElement.textContent = option;
+                    dropdown.appendChild(optionElement);
+                });
+            }
+        });
+
+        // Handle form submission and display results
+        $('#search-form').on('submit', function(event) {
+            event.preventDefault();
+
+            const formData = {
+                location: $('#location-dropdown').val(),
+                sector: $('#sector-dropdown').val(),
+                stage: $('#stage-dropdown').val(),
+                category: $('#category-dropdown').val()
+            };
+
+            $.ajax({
+                type: 'POST',
+                url: '/predict',
+                data: JSON.stringify(formData),
+                contentType: 'application/json',
+                success: function(response) {
+                    displayResults(response.results);
+                },
+                error: function() {
+                    $('#results').html('<p>Error retrieving results.</p>');
+                }
+            });
+        });
+
+        // Display results in the #results div
+        function displayResults(results) {
+            const resultsDiv = $('#results');
+            resultsDiv.empty(); // Clear previous results
+
+            if (results.length === 0) {
+                resultsDiv.html('<p>No matching businesses found.</p>');
+                return;
+            }
+
+            const table = $('<table class="table table-striped">');
+            table.append('<thead><tr><th>Name</th><th>Rating</th><th>Number of Reviews</th><th>Potential</th></tr></thead>');
+            const tbody = $('<tbody>');
+
+            results.forEach(business => {
+                const row = $('<tr>');
+                // row.append(`<td>${business.Location}</td>`);
+                // row.append(`<td>${business.Sector}</td>`);
+                // row.append(`<td>${business['Business Stage']}</td>`);
+                // row.append(`<td>${business.Category}</td>`);
+                row.append(`<td>${business.Name}</td>`);
+                row.append(`<td>${business.Rating}</td>`);
+                row.append(`<td>${business['Number of Reviews']}</td>`);
+                row.append(`<td>${business.Prediction === 1 ? 'High Potential' : 'Low Potential'}</td>`);
+                tbody.append(row);
+            });
+
+            table.append(tbody);
+            resultsDiv.append(table);
+        }
+
+        // Carousel functionality
+        let nextButton = document.getElementById('next');
+        let prevButton = document.getElementById('prev');
+        let carousel = document.querySelector('.carousel');
+        let listHTML = document.querySelector('.carousel .list');
+        let seeMoreButtons = document.querySelectorAll('.seeMore');
+        let backButton = document.getElementById('back');
+        
+        nextButton.onclick = function(){
+            showSlider('next');
+        }
+        prevButton.onclick = function(){
+            showSlider('prev');
+        }
+        let unAcceppClick;
+        const showSlider = (type) => {
+            nextButton.style.pointerEvents = 'none';
+            prevButton.style.pointerEvents = 'none';
+        
+            carousel.classList.remove('next', 'prev');
+            let items = document.querySelectorAll('.carousel .list .item');
+            if(type === 'next'){
+                listHTML.appendChild(items[0]);
+                carousel.classList.add('next');
+            }else{
+                listHTML.prepend(items[items.length - 1]);
+                carousel.classList.add('prev');
+            }
+            clearTimeout(unAcceppClick);
+            unAcceppClick = setTimeout(()=>{
+                nextButton.style.pointerEvents = 'auto';
+                prevButton.style.pointerEvents = 'auto';
+            }, 2000)
+        }
+        seeMoreButtons.forEach((button) => {
+            button.onclick = function(){
+                carousel.classList.remove('next', 'prev');
+                carousel.classList.add('showDetail');
+            }
+        });
+        backButton.onclick = function(){
+            carousel.classList.remove('showDetail');
+        }
+        
+
+
+
+
+        function searchBusinesses() {
+            const location = document.getElementById("location-dropdown").value;
+            const sector = document.getElementById("sector-dropdown").value;
+            const stage = document.getElementById("stage-dropdown").value;
+            const category = document.getElementById("category-dropdown").value;
+
+            // Make an API call to the Flask backend
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ location, sector, stage, category })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const resultsContainer = document.getElementById("results");
+                resultsContainer.innerHTML = ""; // Clear previous results
+
+                // Check if there are any results
+                if (data.results.length === 0) {
+                    resultsContainer.innerHTML = "<p>No results found.</p>";
+                    return;
+                }
+
+                // Create result boxes for each item
+                data.results.forEach((result, index) => {
+                    const resultBox = document.createElement("div");
+                    resultBox.className = `col-md-4 mb-3 fade-in`; // Add fade-in animation
+
+                    resultBox.innerHTML = `
+                        <div class="card p-3 shadow">
+                            <h5 class="card-title">${result.Name}</h5>
+                            <p><strong>Rating:</strong> ${result.Rating}</p>
+                            <p><strong>Number of Reviews:</strong> ${result['Number of Reviews']}</p>
+                            <p><strong>Potential:</strong> ${result.Prediction ? "High" : "Low"}</p>
+                        </div>
+                    `;
+                    resultsContainer.appendChild(resultBox);
+                });
+            })
+            .catch(error => {
+                console.error("Error fetching results:", error);
+            });
+        }
+
+
+
+        
+        
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
